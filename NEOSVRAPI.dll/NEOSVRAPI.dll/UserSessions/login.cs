@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -30,7 +31,20 @@ namespace NeosApiLibrary.UserSessions
 
                 var response = await _httpClient.PostAsync($"{ApiClient.BaseUrl}/api/userSessions", content);
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                // Check if response is JSON
+                var contentType = response.Content.Headers.ContentType;
+                if (contentType != null && contentType.MediaType == "application/json")
+                {
+                    return responseBody;
+                }
+                else
+                {
+                    // Handle non-JSON response, e.g., text-based response
+                    return responseBody;
+                }
             }
             catch (HttpRequestException ex)
             {

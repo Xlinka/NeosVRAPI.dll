@@ -1,13 +1,11 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 
 namespace NeosApiLibrary
 {
     public class ApiClient
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://api.neos.com"; // Adjust the actual API base URL
+        private const string BaseUrl = "https://api.neos.com"; 
 
         public ApiClient(string accessToken)
         {

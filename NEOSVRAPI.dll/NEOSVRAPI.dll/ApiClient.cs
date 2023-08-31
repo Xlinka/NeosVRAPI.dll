@@ -5,7 +5,7 @@ namespace NeosApiLibrary
     public class ApiClient
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://api.neos.com"; 
+        public const string BaseUrl = "https://api.neos.com"; 
 
         public ApiClient(string accessToken)
         {
